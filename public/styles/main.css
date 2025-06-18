@@ -1,0 +1,209 @@
+::selection {
+    background: rgba(133, 61, 125, 0.8);
+    color: var(--whitesands-500);
+}
+
+/* Main Styles */
+html, body {
+  height: 100%;
+}
+body {
+    background-color: var(--whitesands-500);
+    padding: 0;
+    margin:0;
+}
+.container {
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Section Styles */
+.hero.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url(/images/backgrounds/Hero-Background_Blur.webp);
+    background-size: cover;
+    background-position: bottom;
+}
+
+/* Padding Styles */
+.padding-hero {
+    padding: var(--hero) var(--side);
+    width: 100%;
+    box-sizing: border-box;
+}
+.padding-normal {
+    padding: var(--vertical) var(--side);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/*Wrapper Styles */
+.wrapper-hero {
+    width: 100%;
+}
+.wrapper-center {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Type Styles */
+.title-page {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--page-title);
+    line-height: 0.875;
+    color: var(--agave-500);
+    padding: 0 0 2.5rem 0;
+    margin: 0;
+}
+
+.display-span {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: var(--page-title-lg);
+    color: var(--plumb-500);
+    position: relative;
+    top: 0.5rem;
+    left: -0.25rem;
+}
+
+.text-body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: var(--fs-body);
+    line-height: 1.25;
+    color: var(--agave-500);
+    padding: 0 0 2.5rem 0;
+    margin: 0;
+}
+
+.large {
+    font-size: var(--fs-bodylg);
+    max-width: 85rem;
+}
+.center {
+    text-align: center;
+}
+
+/* Button Styles */
+.button-primary {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  width: fit-content;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  text-decoration: none;
+  color: var(--whitesands-500);
+  overflow: hidden;
+  z-index: 0;
+  box-shadow:
+    2px 4px 4px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+.button-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--plumb-500), var(--lavender-500));
+  z-index: -2;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+.button-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--golden-500);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.button-primary:hover::before {
+  opacity: 0;
+}
+.button-primary:hover::after {
+  opacity: 1;
+}
+.button-primary:hover {
+    scale: 1.05;
+    transition: all 0.2s ease-in-out;
+}
+
+.button-secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem 1rem 0;
+  width: fit-content;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--agave-500);
+  background: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+.button-secondary:hover {
+    color: var(--golden-500);
+    scale: 1.05;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Element Styles */
+.divider {
+    width: 15rem;
+    height: 5px;
+    margin-top: 3.5rem;
+    background-color: var(--plumb-500);
+}
+
+/* Responsive Styles */
+@media (max-width:956px) {
+    /* Section Styles */
+    .hero.home {
+        height: 80vh;
+    }
+}
+
+@media (max-width:561px) {
+    /* Wrapper Styles */
+    .wrapper-buttons {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    /* Button Styles */
+    .button-primary, .button-secondary {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

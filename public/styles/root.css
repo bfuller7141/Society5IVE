@@ -1,0 +1,144 @@
+:root {
+  /* === Font Families === */
+  --font-primary: "Open Sans", sans-serif;
+  --font-display: "Golden Hopes", serif;
+
+  /* === Deep Agave (#002D3A) === */
+  --agave-100: #E0EBEE;
+  --agave-200: #B3CED6;
+  --agave-300: #80AEBB;
+  --agave-400: #4D8EA1;
+  --agave-500: #002D3A;
+  --agave-600: #002733;
+  --agave-700: #001F29;
+  --agave-800: #00171F;
+  --agave-900: #000F14;
+
+  /* === Sunset Plumb (#863D7E) === */
+  --plumb-100: #F4EAF2;
+  --plumb-200: #DABEDC;
+  --plumb-300: #C193C6;
+  --plumb-400: #A967B0;
+  --plumb-500: #863D7E;
+  --plumb-600: #71336A;
+  --plumb-700: #5C2956;
+  --plumb-800: #471F42;
+  --plumb-900: #32152E;
+
+  /* === Lavender Dust (#AB9CC1) === */
+  --lavender-100: #F7F4FB;
+  --lavender-200: #E4DCF2;
+  --lavender-300: #D1C3E8;
+  --lavender-400: #BDA9DD;
+  --lavender-500: #AB9CC1;
+  --lavender-600: #998BB0;
+  --lavender-700: #837399;
+  --lavender-800: #6E5D81;
+  --lavender-900: #58466A;
+
+  /* === Clay Rose (#D27776) === */
+  --clayrose-100: #FCEEEE;
+  --clayrose-200: #F6D2D1;
+  --clayrose-300: #F0B5B3;
+  --clayrose-400: #EA9896;
+  --clayrose-500: #D27776;
+  --clayrose-600: #BB6767;
+  --clayrose-700: #A45858;
+  --clayrose-800: #8D4849;
+  --clayrose-900: #76393A;
+
+  /* === Rose Blush (#E5B8C2) === */
+  --roseblush-100: #FEF6F8;
+  --roseblush-200: #F8E4E9;
+  --roseblush-300: #F1D1DB;
+  --roseblush-400: #EBBFCC;
+  --roseblush-500: #E5B8C2;
+  --roseblush-600: #CDA2AC;
+  --roseblush-700: #B58C96;
+  --roseblush-800: #9E7680;
+  --roseblush-900: #86506A;
+
+  /* === White Sands (#F4F3F6) === */
+  --whitesands-100: #FFFFFF;
+  --whitesands-200: #FBFBFC;
+  --whitesands-300: #F8F7F9;
+  --whitesands-400: #F6F5F8;
+  --whitesands-500: #F4F3F6;
+  --whitesands-600: #DCDADC;
+  --whitesands-700: #C4C3C3;
+  --whitesands-800: #ACABAA;
+  --whitesands-900: #949392;
+
+
+  /* === Secondary Colors === */
+  --golden-500: #BD814D;
+  --terra-500: #B4694C;
+  --tan-500: #E4CCB8;
+  --olive-500: #797464;
+  --sage-500: #A6A89D;
+  --blush-500: #E8D8E1;
+
+  /* === Functional / UI States === */
+  --success: #589A70;
+  --error: #C83A39;
+  --warning: #BD814D;
+  --inactive: #A6A89D;
+
+  /* === Grayscale === */
+  --black: #1D1D1D;
+  --white: #FFFFFF;
+  --gray-100: #F4F3F6;
+  --gray-200: #EAEAEA;
+  --gray-300: #BEBEBE;
+  --gray-400: #7C7C7C;
+  --gray-500: #4C4C4C;
+
+  /* === Typography Sizes === */
+  --fs-body: clamp(1.125rem, 2.5vw, 1.25rem);
+  --fs-bodysm: clamp(1rem, 2vw, 1.125rem);
+  --fs-bodyxs: clamp(0.95rem, 2vw, 1rem);
+  --fs-bodylg: clamp(1.25rem, 2.5vw, 1.9rem);
+  --fs-bodyxl: clamp(1.75rem, 3vw, 2.75rem);
+
+  --page-title: clamp(3.25rem, 8vw, 8.5rem);
+  --page-title-lg: clamp(4rem, 10vw, 12rem);
+  --section-title: clamp(2.5rem, 5vw, 4.5rem);
+  --title-lg: clamp(2.5rem, 3vw, 4rem);
+  --title-md: clamp(2.25rem, 2.5vw, 3.5rem);
+  --title-sm: clamp(1.5rem, 2vw, 2.5rem);
+  --title-xs: clamp(1.25rem, 2.5vw, 1.5rem);
+
+  /* === Layout Spacing === */
+  --side: clamp(1rem, 2vw, 3rem);
+  --vertical: clamp(3.5rem, 6vw, 5rem);
+  --lg-vertical: clamp(3.75rem, 6vw, 9rem);
+  --md-vertical: clamp(3rem, 6vw, 7rem);
+  --sm-vertical: clamp(2rem, 6vw, 2.5rem);
+  --hero: clamp(5rem, 10vw, 6rem);
+  --hero-md: clamp(6rem, 10vw, 8rem);
+  --hero-lg: clamp(10rem, 12vw, 12rem);
+
+  /* === Utility === */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  --focus-outline: 3px solid var(--plumb-500);
+}
+
+*:focus-visible {
+  outline: var(--focus-outline);
+  border-radius: var(--radius-md);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --fs-body: clamp(1.25rem, 2.5vw, 1.5rem);
+    --fs-bodysm: clamp(1.15rem, 2vw, 1.3rem);
+    --fs-bodyxs: clamp(1rem, 2vw, 1.1rem);
+    --fs-bodylg: clamp(1.35rem, 3vw, 2rem);
+    --page-title: clamp(3rem, 6vw, 5.5rem);
+    --hero: clamp(6rem, 10vw, 7rem);
+  }
+}

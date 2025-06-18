@@ -1,0 +1,25 @@
+/* Golden Hopes */
+@font-face {
+  font-family: "Golden Hopes";
+  src: url("/fonts/golden-hopes.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Open Sans Variable */
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/open-sans-var.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/open-sans-var.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
