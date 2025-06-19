@@ -7,6 +7,7 @@ import ReviewCard from "../components/ReviewCard.astro";
 import BlogSlider from "../components/BlogSlider.astro";
 import FooterMain from "../components/FooterMain.astro";
 import { getCollection } from 'astro:content';
+import BlogSliderScript from "../components/BlogSliderScript.astro";
 
 const reviews = await getCollection('reviews');
 const randomReview = reviews.length > 0 ? reviews[Math.floor(Math.random() * reviews.length)].data : null;
@@ -175,61 +176,7 @@ const randomReview = reviews.length > 0 ? reviews[Math.floor(Math.random() * rev
 
     <FooterMain />
 
-    <!-- Blog Slider Script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const slider = document.getElementById('blog-slider');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-
-        if (slider && prevButton && nextButton) {
-          const getCardWidth = () => {
-            const firstItem = slider.firstElementChild;
-            return firstItem
-              ? firstItem.getBoundingClientRect().width +
-                  parseFloat(getComputedStyle(slider).gap)
-              : 0;
-          };
-
-          const scrollSlider = (distance) => {
-            slider.scrollBy({ left: distance, behavior: 'smooth' });
-          };
-
-          prevButton.addEventListener('click', () => scrollSlider(-getCardWidth()));
-          nextButton.addEventListener('click', () => scrollSlider(getCardWidth()));
-
-          let startX = null;
-          let scrollStart = null;
-
-          slider.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            scrollStart = slider.scrollLeft;
-          }, { passive: true });
-
-          slider.addEventListener('touchmove', (e) => {
-            if (startX !== null && scrollStart !== null) {
-              const currentX = e.touches[0].clientX;
-              const distance = startX - currentX;
-              slider.scrollLeft = scrollStart + distance;
-            }
-          }, { passive: true });
-
-          slider.addEventListener('touchend', (e) => {
-            if (startX === null) return;
-            const endX = e.changedTouches[0].clientX;
-            const distance = startX - endX;
-            const cardWidth = getCardWidth();
-
-            if (Math.abs(distance) > cardWidth / 2) {
-              scrollSlider(distance > 0 ? cardWidth : -cardWidth);
-            }
-
-            startX = null;
-            scrollStart = null;
-          }, { passive: true });
-        }
-      });
-    </script>
+    <BlogSliderScript />
 
   </body>
 
