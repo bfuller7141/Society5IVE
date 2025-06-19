@@ -1,0 +1,33 @@
+---
+export interface Props {
+  review: {
+    reviewText: string;
+  } | null;
+}
+
+const { review } = Astro.props;
+---
+
+{review && (
+  <div class="review-card">
+    <div class="wrapper-center">
+      <p class="text-body large center white">
+        <strong>{review.reviewText}</strong>
+      </p>
+    </div>
+  </div>
+)}
+
+<style>
+.review-card {
+  background-image: url('/images/backgrounds/dark-background.webp');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-white);
+  max-width: 80rem;
+  margin: 0 auto;
+}
+</style>

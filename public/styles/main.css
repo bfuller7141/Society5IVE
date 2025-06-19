@@ -17,6 +17,11 @@ body {
     margin: 0 auto;
     padding: 0;
 }
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 
 /* Section Styles */
 .hero.home {
@@ -39,9 +44,16 @@ body {
     box-sizing: border-box;
 }
 .padding-normal {
-    padding: var(--vertical) var(--side);
+    padding-top: var(--vertical);
+    padding-bottom: var(--vertical);
+    padding-left: var(--side);
+    padding-right: var(--side);
     width: 100%;
     box-sizing: border-box;
+}
+
+.small-top {
+    padding-top: var(--sm-vertical);
 }
 
 /*Wrapper Styles */
@@ -54,6 +66,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 0;
+}
+.wrapper-column.large-left {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 8rem;
+  align-items: center;
 }
 
 .wrapper-buttons {
@@ -62,6 +81,19 @@ body {
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
+    margin: 4rem auto 0 auto;
+}
+
+.wrapper-text {
+  column-count: 2;
+  column-gap: 3rem;
+  margin: 2rem auto 0 auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Type Styles */
@@ -72,8 +104,35 @@ body {
     font-size: var(--page-title);
     line-height: 0.875;
     color: var(--agave-500);
+    margin: 0;
+}
+.title-section {
+    display: inline;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: var(--section-title);
+    line-height: 0.875;
+    color: var(--agave-500);
     padding: 0 0 2.5rem 0;
     margin: 0;
+}
+.title-small {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: var(--fs-bodylg);
+    line-height: 0.875;
+    color: var(--agave-500);
+    margin: 0 0 0.5rem 0;
+}
+.title-list {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--fs-body);
+    line-height: 0.875;
+    color: var(--plumb-500);
+    margin: 0 0 1rem 0;
 }
 
 .display-span {
@@ -86,6 +145,16 @@ body {
     top: 0.5rem;
     left: -0.25rem;
 }
+.display-section {
+    display: inline;
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: var(--section-title-lg);
+    color: var(--plumb-500);
+    position: relative;
+    top: 0rem;
+}
 
 .text-body {
     font-family: var(--font-primary);
@@ -93,7 +162,6 @@ body {
     font-size: var(--fs-body);
     line-height: 1.25;
     color: var(--agave-500);
-    padding: 0 0 2.5rem 0;
     margin: 0;
 }
 
@@ -103,6 +171,13 @@ body {
 }
 .center {
     text-align: center;
+}
+.white {
+    color: var(--whitesands-500);
+}
+
+.padding-top {
+    padding-top: 1rem;
 }
 
 /* Button Styles */
@@ -176,6 +251,38 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
+/* List Styles */
+ul.wrapper {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+/* Image Styles */
+.img-full {
+    width: 100%;
+    max-height: 15rem;
+    object-fit: cover;
+    object-position: bottom;
+    border-radius: var(--radius-lg);
+    margin-top: 4rem;
+    box-shadow: var(--shadow-md);
+    box-sizing: border-box;
+}
+.img-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    box-sizing: border-box;
+}
+
 /* Element Styles */
 .divider {
     width: 15rem;
@@ -184,11 +291,42 @@ body {
     background-color: var(--plumb-500);
 }
 
+/* Hidden Styles */
+.hide-desktop {
+    display: none;
+}
+
 /* Responsive Styles */
 @media (max-width:956px) {
     /* Section Styles */
     .hero.home {
         height: 80vh;
+    }
+
+    /* Image Styles */
+    .img-full {
+        height: 25rem;
+    }
+}
+
+@media (max-width:768px) {
+    /* Wrapper Styles */
+    .wrapper-text {
+        column-count: 1;
+    }
+
+      .wrapper-column.large-left {
+        grid-template-columns: 1fr;
+    }
+
+    .img-main {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+
+    /* Mobile Only Styles */
+    .hide-desktop {
+        display: block;
     }
 }
 
@@ -205,5 +343,13 @@ body {
     .button-primary, .button-secondary {
         width: 100%;
         box-sizing: border-box;
+        padding: 1rem 0;
     }
+}
+
+/* Fallback Styles */
+@supports not ((-webkit-backdrop-filter: blur(80px)) or (backdrop-filter: blur(80px))) {
+  .menu {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
 }

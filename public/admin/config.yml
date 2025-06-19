@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main # or your default branch
+
+media_folder: "public/images/gallery"
+public_folder: "/images/gallery"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    slug: "{{slug}}"
+    create: true
+    format: "frontmatter"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", hint: "Use /projects/project-name" }
+      - { name: "cover", label: "Cover Image", widget: "image" }
+      - { name: "caseStudy", label: "Case Study", widget: "markdown" }
+      - name: "gallery"
+        label: "Gallery Images"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+
+  - name: "reviews"
+    label: "Reviews"
+    folder: "src/content/reviews"
+    create: true
+    format: "frontmatter"
+    fields:
+      - { name: "reviewText", label: "Review Text", widget: "text" }
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    slug: "{{slug}}"
+    create: true
+    format: "frontmatter"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", hint: "Use a short unique name for the URL" }
+      - { name: "image", label: "Cover Image", widget: "image" }
+      - { name: "excerpt", label: "Excerpt", widget: "text" }
+      - { name: "date", label: "Publish Date", widget: "datetime" }
+      - { name: "content", label: "Post Body", widget: "markdown" }

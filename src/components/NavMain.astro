@@ -8,7 +8,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
       <div class="nav-wrapper">
         <div class="nav-left">
           <a href="/" aria-label="Go to homepage">
-            <img  class="nav-logo" src="/images/logo-society5ive.svg" alt="Society 5IVE logo" loading="eager" />
+            <img class="nav-logo" src="/images/logo-society5ive.svg" alt="Society 5IVE logo" loading="eager" />
           </a>
         </div>
         <div class="nav-right">
@@ -42,9 +42,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
     if (hamburger && menu) {
       hamburger.addEventListener('click', () => {
         const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', (!expanded).toString());
+        const isActive = !expanded;
+
+        hamburger.setAttribute('aria-expanded', isActive.toString());
         hamburger.classList.toggle('active');
         menu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll', isActive); // Disable scroll
       });
 
       document.addEventListener('click', (event) => {
@@ -53,6 +56,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
           menu.classList.remove('active');
           hamburger.classList.remove('active');
           hamburger.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('no-scroll'); // Enable scroll
         }
       });
     }
@@ -61,7 +65,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
 
 <style>
   .main-nav {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(244, 243, 246, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     position: fixed;
@@ -128,16 +132,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
     z-index: -1;
   }
 
-  .nav-link:hover .underline {
+  .nav-link:hover .underline,
+  .nav-link.active .underline {
     width: 100%;
   }
 
   .nav-link.active {
     color: var(--plumb-500);
-  }
-
-  .nav-link.active .underline {
-    width: 100%;
   }
 
   .nav-cta {
@@ -160,35 +161,56 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
   .bar {
     display: block;
     width: 2rem;
-    height: 0.25rem;
-    margin: 5px auto;
+    height: 2px;
+    margin: 6px auto;
     background-color: var(--agave-500);
-    border-radius: 2px;
+    border-radius: 1px;
     transition: all 0.3s ease;
   }
 
+  /* Disable page scroll when menu is open */
+  .no-scroll {
+    overflow: hidden;
+    height: 100vh;
+  }
+
   @media (max-width: 956px) {
-    .nav-logo {
-        height: 3rem;
+    .padding-nav {
+      padding: 0.5rem 1rem;
     }
+
+    .nav-logo {
+      height: 3rem;
+    }
+
     .nav-mobile {
       display: block;
     }
 
     .menu {
       display: none;
-      position: absolute;
-      top: 4.5rem;
-      left: 0;
+      position: fixed;
+      top: 5.5rem;
       right: 0;
-      background-color: var(--white);
+      width: calc(100% - 4rem);
+      height: calc(100vh - 5.5rem);
+      border-radius: var(--radius-lg);
+      background-color: rgba(244, 243, 246, 0.95);
+      backdrop-filter: blur(80px);
+      -webkit-backdrop-filter: blur(80px);
       flex-direction: column;
       padding: 2rem;
       z-index: 999;
+      margin: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
     }
 
     .menu.active {
       display: flex;
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .nav-cta {

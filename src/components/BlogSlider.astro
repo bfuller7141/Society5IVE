@@ -1,0 +1,191 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 8);
+---
+
+<div class="slider-container">
+  <ul class="slider" id="blog-slider">
+    {posts.map((post) => (
+      <li>
+        <BlogCard
+          title={post.data.title}
+          summary={post.data.excerpt}
+          image={post.data.image}
+          link={`/blog/${post.slug}`}
+          alt={post.data.title}
+        />
+      </li>
+    ))}
+  </ul>
+  <div class="slider-controls">
+    <button id="prevButton" aria-label="Scroll Backward" class="slider-btn">
+      <img src="/images/icons/icon_arrow-right.svg" alt="" role="presentation" class="portfolio-card-arrow left" loading="lazy" />
+    </button>
+    <button id="nextButton" aria-label="Scroll Forward" class="slider-btn">
+      <img src="/images/icons/icon_arrow-right.svg" alt="" role="presentation" class="portfolio-card-arrow" loading="lazy" />
+    </button>
+  </div>
+  <div class="read-all-wrapper">
+    <a href="/blog" class="button-primary blog-button">Read All Posts</a>
+  </div>
+</div>
+
+<script>
+  const slider = document.getElementById('blog-slider');
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+
+  if (slider && prevButton && nextButton) {
+    const cardWidth = slider.firstElementChild
+      ? slider.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(slider).gap)
+      : 0;
+
+    prevButton.addEventListener('click', () => {
+      slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+
+    nextButton.addEventListener('click', () => {
+      slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+
+    let startX: number | null = null;
+    let scrollStart: number | null = null;
+
+    slider.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      scrollStart = slider.scrollLeft;
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', (e) => {
+      if (startX !== null) {
+        const currentX = e.touches[0].clientX;
+        const distance = startX - currentX;
+        if (scrollStart !== null) {
+          slider.scrollLeft = scrollStart + distance;
+        }
+      }
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+      if (startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      const distance = startX - endX;
+
+      if (Math.abs(distance) > cardWidth / 2) {
+        slider.scrollBy({
+          left: distance > 0 ? cardWidth : -cardWidth,
+          behavior: 'smooth'
+        });
+      }
+      startX = null;
+      scrollStart = null;
+    }, { passive: true });
+  }
+</script>
+
+<style>
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.slider {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-controls {
+  position: absolute;
+  bottom: -1rem;
+  right: 0;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem;
+}
+
+.slider-btn {
+  background: none;
+  border: none;
+  padding: 0.75rem;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+  transform: translateY(-0.25rem) scale(1.05);
+}
+
+.portfolio-card-arrow {
+  width: clamp(1rem, 2vw, 1.25rem);
+  height: auto;
+}
+
+.portfolio-card-arrow.left {
+  transform: rotate(180deg);
+}
+
+.slider > * {
+  flex: 0 0 auto;
+  max-width: 30rem;
+  min-width: 20rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .slider > * {
+    max-width: 24rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-controls {
+    bottom: -0.25rem;
+    right: 0.5rem;
+    position: absolute;
+    margin-top: 0;
+    width: auto;
+  }
+
+  .slider-btn {
+    width: auto;
+  }
+
+  .slider > * {
+    max-width: 90%;
+    min-width: 90%;
+  }
+}
+
+@media (max-width:561px) {
+  .slider {
+    margin-bottom: 4rem;
+  }
+
+  .slider-controls {
+    bottom: 4rem;
+    right: 0.5rem;
+  }
+}
+</style>

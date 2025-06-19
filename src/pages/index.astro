@@ -1,7 +1,17 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import NavMain from "../components/NavMain.astro"
+import NavMain from "../components/NavMain.astro";
+import ServiceGrid from "../components/ServiceGrid.astro";
+import PortfolioBento from "../components/PortfolioBento.astro";
+import ReviewCard from "../components/ReviewCard.astro";
+import BlogSlider from "../components/BlogSlider.astro";
+import FooterMain from "../components/FooterMain.astro";
+import { getCollection } from 'astro:content';
+
+const reviews = await getCollection('reviews');
+const randomReview = reviews.length > 0 ? reviews[Math.floor(Math.random() * reviews.length)].data : null;
 ---
+
 <html lang="en">
   <head>
     <BaseHead 
@@ -10,47 +20,161 @@ import NavMain from "../components/NavMain.astro"
       image=""
     />
   </head>
-  <NavMain />
   <body>
-
+    <NavMain />
     <main id="main-content">
 
-        <section class="hero home">
-            <div class="padding-hero">
-                <div class="container">
-                    <div class="wrapper-hero">
-                        <h1 class="title-page">
-                            Spaces That<br/>
-                            Feel Like <span class="title-page display-span">Home</span>
-                        </h1>
-                        <div class="wrapper-buttons">
-                            <a class="button-primary" href="/start">
-                                Start Your Project
-                            </a>
-                            <a class="button-secondary" href="/">
-                                Download Our Lookbook
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <section class="hero home">
+        <div class="padding-hero">
+          <div class="container">
+            <div class="wrapper-hero">
+              <h1 class="title-page">
+                Spaces That<br/>
+                Feel Like <span class="title-page display-span">Home</span>
+              </h1>
+              <div class="wrapper-buttons">
+                <a class="button-primary" href="/start">Start Your Project</a>
+                <a class="button-secondary" href="/">Download Our Lookbook</a>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section>
-            <div class="padding-normal">
-                <div class="container">
-                    <div class="wrapper-center">
-                        <p class="text-body large center">
-                            Society 5IVE is a Phoenix-based interior design studio creating lasting spaces with heart. We blend beauty and function using sustainable materials, ethical sourcing, and collaborative design. Whether it’s a home or a commercial space, we design with care, purpose, and a deep respect for the people who live and work there.
-                        </p>
-                        <div class="divider"></div>
-                    </div>
-                </div>
+      <section>
+        <div class="padding-normal small=top">
+          <div class="container">
+            <div class="wrapper-center">
+              <p class="text-body large center">
+                Society 5IVE is a Phoenix-based interior design studio creating lasting spaces with heart. We blend beauty and function using sustainable materials, ethical sourcing, and collaborative design. Whether it’s a home or a commercial space, we design with care, purpose, and a deep respect for the people who live and work there.
+              </p>
+              <div class="divider"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper-center">
+              <h2 class="title-section display-section center">Our Services<br/> <span class="title-section center">Tailored for You</span></h2>
+              <ServiceGrid />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper">
+              <h2 class="title-section">Rooted in What Matters<br/> <span class="title-section display-section">Our Purpose</span></h2>
+              <div class="wrapper-text">
+                <p class="text-body">
+                  Society 5IVE is a Phoenix interior design studio focused on creating spaces that are both beautiful and meaningful. We believe design should reflect the people who live and work in a space, not just follow trends. That’s why we take the time to listen, learn, and collaborate with every client. Our process is rooted in thoughtful choices, long-term thinking, and a deep respect for sustainability.
+                  <br/><br class="hide-desktop"/>
+                  From material selection to layout, every detail has a purpose. We source ethically, partner with skilled makers, and prioritize quality over quick fixes. Whether you're furnishing a family home or reimagining a commercial space, we work closely with you to design an environment that feels true to your values and supports your day-to-day life.
+                </p>
+              </div>
+              <img class="img-full" src="/images/static/leather-set.webp"/>
+              <div class="wrapper-buttons center">
+                <a class="button-primary" href="/start">Start Your Project</a>
+                <a class="button-secondary" href="/">Download Our Lookbook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper-center">
+              <h2 class="title-section display-section center">Our Work<br/> <span class="title-section center">Expert Designed Spaces</span></h2>
+              <PortfolioBento />
+            </div>
+            <div class="wrapper-buttons center">
+              <a class="button-primary" href="/portfolio">View Our Portfolio</a>
+              <a class="button-secondary" href="/start">Start Your Project</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper-column large-left">
+              <div class="wrapper">
+                <h2 class="title-section display-section center">Our Approach<br/> <span class="title-section center">Design That Connects</span></h2>
+                <p class="text-body padding-top">
+                  We design with care, not trends. Every choice we make supports the way you live, work, and connect with your space. Our philosophy is simple: design should feel personal, purposeful, and built to last.
+                </p>
+                <ul class="wrapper">
+                  <li class="text-body">
+                    <h3 class="title-list">Sustainability Comes First</h3>
+                    <p class="text-body">We prioritize sustainable materials and ethical sourcing that respect people, place, and planet. Our goal is to create beauty without waste.</p>
+                  </li>
+                  <li class="text-body">
+                    <h3 class="title-list">Function Matters</h3>
+                    <p class="text-body">Good design should work hard for your daily life. We create layouts that flow naturally and support comfort, clarity, and ease of use.</p>
+                  </li>
+                  <li class="text-body">
+                    <h3 class="title-list">Connection is Everything</h3>
+                    <p class="text-body">Every project begins with listening. We take time to understand your needs, values, and goals so that the final space reflects more than just style.</p>
+                  </li>
+                </ul>
+                <div class="wrapper-buttons">
+                  <a class="button-primary" href="/start">Start Your Project</a>
+                  <a class="button-secondary" href="/">Download Our Lookbook</a>
+                </div>
+              </div>
+              <img class="img-main" src="/images/static/sofa.webp"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {randomReview && (
+        <section>
+          <div class="padding-normal">
+            <div class="container">
+              <ReviewCard review={randomReview} />
+            </div>
+          </div>
         </section>
+      )}
+
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrappe">
+              <h2 class="title-section display-section">The Storyboard<br/> <span class="title-section">Ideas, Insights, and Stories</span></h2>
+              <BlogSlider />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper-center">
+              <h2 class="title-section display-section center">Lets Begin Our Journey<br/> <span class="title-section center">ARE YOU READY TO DESIGN <br/>A SPACE MADE FOR YOU?</span></h2>
+              <div class="wrapper-buttons center">
+                <a class="button-primary" href="/start">Start Your Project</a>
+                <a class="button-secondary" href="/">Download Our Lookbook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
     </main>
 
-  </body>
+    <FooterMain />
 
+  </body>
+  
 </html>

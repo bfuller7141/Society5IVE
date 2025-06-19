@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Society 5IVE CMS</title>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </head>
+  <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script type="module">
+      import CMS from "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
+      import config from "/admin/config.yml";
+      CMS.init({ config });
+    </script>
+  </body>
+</html>

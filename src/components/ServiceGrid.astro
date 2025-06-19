@@ -1,0 +1,119 @@
+<div class="service-grid">
+  <div class="service-card">
+    <img src="/images/static/bedroom-sidetable.webp" alt="Residential Interior Design" class="service-image" />
+    <div class="overlay"></div>
+    <div class="service-content">
+      <h3 class="title-small white">Residential Interior Design</h3>
+      <p class="text-body white">We help create homes that reflect your lifestyle and values. With natural materials and thoughtful layouts your space becomes a place you truly want to be.</p>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <img src="/images/static/chair-corner.webp" alt="Commercial Interior Design" class="service-image" />
+    <div class="overlay"></div>
+    <div class="service-content">
+      <h3 class="title-small white">Commercial Interior Design</h3>
+      <p class="text-body white">Whether it's a boutique office, retail space, or creative studio, we design environments that support your team, reflect your brand, and feel considered from the ground up.</p>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <img src="/images/static/meeting-space.webp" alt="Design Consultations" class="service-image" />
+    <div class="overlay"></div>
+    <div class="service-content">
+      <h3 class="title-small white">Design Consultations</h3>
+      <p class="text-body white">If you need clarity on where to start or how to move forward, we offer one-on-one consultations that give you helpful insights and a clear path to meaningful change.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.service-card {
+  position: relative;
+  flex: 1 1 22rem;
+  max-width: 100%;
+  height: 30rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+  padding: 2rem;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.service-card::before,
+.service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.service-card::before {
+  background: linear-gradient(to bottom, rgba(0, 45, 58, 0.6), rgba(0, 45, 58, 0.9));
+  opacity: 1;
+}
+
+.service-card::after {
+  background: linear-gradient(to bottom, rgba(134, 61, 126, 0.6), rgba(134, 61, 126, 0.9));
+  opacity: 0;
+}
+
+.service-card:hover::before {
+  opacity: 0;
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+.service-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.service-content {
+  position: relative;
+  z-index: 2;
+  color: var(--whitesands-500);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+}
+
+.service-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .service-card:nth-child(3) {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-card {
+    padding: 2rem 1rem;
+  }
+}
+</style>
