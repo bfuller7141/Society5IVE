@@ -175,6 +175,61 @@ const randomReview = reviews.length > 0 ? reviews[Math.floor(Math.random() * rev
 
     <FooterMain />
 
+    <! -- Blog Slider Script -->
+
+    <script>
+      const slider = document.getElementById('blog-slider');
+      const prevButton = document.getElementById('prevButton');
+      const nextButton = document.getElementById('nextButton');
+
+      if (slider && prevButton && nextButton) {
+        const cardWidth = slider.firstElementChild
+          ? slider.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(slider).gap)
+          : 0;
+
+        prevButton.addEventListener('click', () => {
+          slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+
+        nextButton.addEventListener('click', () => {
+          slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+
+        let startX: number | null = null;
+        let scrollStart: number | null = null;
+
+        slider.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          scrollStart = slider.scrollLeft;
+        }, { passive: true });
+
+        slider.addEventListener('touchmove', (e) => {
+          if (startX !== null) {
+            const currentX = e.touches[0].clientX;
+            const distance = startX - currentX;
+            if (scrollStart !== null) {
+              slider.scrollLeft = scrollStart + distance;
+            }
+          }
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+          if (startX === null) return;
+          const endX = e.changedTouches[0].clientX;
+          const distance = startX - endX;
+
+          if (Math.abs(distance) > cardWidth / 2) {
+            slider.scrollBy({
+              left: distance > 0 ? cardWidth : -cardWidth,
+              behavior: 'smooth'
+            });
+          }
+          startX = null;
+          scrollStart = null;
+        }, { passive: true });
+      }
+    </script>
+
   </body>
-  
+
 </html>
