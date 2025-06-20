@@ -12,15 +12,15 @@
           : 0;
       };
 
-      const scrollSlider = (distance: number) => {
+      const scrollSlider = (distance) => {
         slider.scrollBy({ left: distance, behavior: 'smooth' });
       };
 
       prevButton.addEventListener('click', () => scrollSlider(-getCardWidth()));
       nextButton.addEventListener('click', () => scrollSlider(getCardWidth()));
 
-      let startX: number | null = null;
-      let scrollStart: number | null = null;
+      let startX = null;
+      let scrollStart = null;
 
       slider.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
