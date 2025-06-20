@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogCard from './BlogCard.astro';
-import BlogSliderScript from './BlogSliderScript.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -11,7 +10,6 @@ const posts = (await getCollection('blog'))
 <div class="slider-container">
   <ul class="slider" id="blog-slider">
     {posts.map((post) => (
-      <li>
         <BlogCard
           title={post.data.title}
           summary={post.data.excerpt}
@@ -19,7 +17,6 @@ const posts = (await getCollection('blog'))
           link={`/blog/${post.slug}`}
           alt={post.data.title}
         />
-      </li>
     ))}
   </ul>
   <div class="slider-controls">
@@ -158,15 +155,10 @@ ul {
   flex: 0 0 auto;
   max-width: 30rem;
   min-width: 20rem;
-  width: 100%;
+  width: auto;
   box-sizing: border-box;
 }
 
-@media (max-width: 1024px) {
-  .slider > * {
-    max-width: 24rem;
-  }
-}
 
 @media (max-width: 768px) {
   .slider-controls {
@@ -181,10 +173,6 @@ ul {
     width: auto;
   }
 
-  .slider > * {
-    max-width: 90%;
-    min-width: 90%;
-  }
 }
 
 @media (max-width:561px) {

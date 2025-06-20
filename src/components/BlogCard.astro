@@ -10,7 +10,7 @@ export interface Props {
 const { title, summary, image, link, alt = "Blog image" } = Astro.props;
 ---
 
-<article class="blog-card">
+<li class="blog-card">
   <a href={link} class="blog-link">
     <img src={image} alt={alt} class="blog-img" loading="lazy" />
     <div class="blog-content">
@@ -21,7 +21,7 @@ const { title, summary, image, link, alt = "Blog image" } = Astro.props;
       </div>
     </div>
   </a>
-</article>
+</li>
 
 <style>
 .blog-card {
@@ -33,6 +33,7 @@ const { title, summary, image, link, alt = "Blog image" } = Astro.props;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 30rem;
+  min-width: 20rem;
   min-height: 100%;
 }
 
