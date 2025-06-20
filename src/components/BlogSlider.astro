@@ -6,6 +6,7 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 8);
 ---
+
 <div class="slider-container">
   <ul class="slider" id="blog-slider">
     {posts.map((post) => (
@@ -20,7 +21,7 @@ const posts = (await getCollection('blog'))
   </ul>
 
   <div class="slider-controls">
-    <button class="prev-btn slider-btn" aria-label="Scroll Backward">
+    <button id="prevButton" aria-label="Scroll Backward" class="slider-btn">
       <img
         src="/images/icons/icon_arrow-right.svg"
         alt=""
@@ -29,7 +30,7 @@ const posts = (await getCollection('blog'))
         loading="lazy"
       />
     </button>
-    <button class="next-btn slider-btn" aria-label="Scroll Forward">
+    <button id="nextButton" aria-label="Scroll Forward" class="slider-btn">
       <img
         src="/images/icons/icon_arrow-right.svg"
         alt=""
@@ -45,56 +46,53 @@ const posts = (await getCollection('blog'))
   </div>
 </div>
 
-<!-- this script will be bundled and run on the client after load -->
-<script client:load>
-  // find our slider container
-  const container = document.querySelector('.slider-container');
-  const slider    = container.querySelector('#blog-slider');
-  const prevBtn   = container.querySelector('.prev-btn');
-  const nextBtn   = container.querySelector('.next-btn');
+<script>
+  // exactly like your portfolio slider—no window.load wrapper
+  const slider     = document.getElementById('blog-slider');
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
 
-  if (!slider || !prevBtn || !nextBtn) return;
+  if (slider && prevButton && nextButton) {
+    const firstCard = slider.querySelector('li');
+    const gap       = parseFloat(getComputedStyle(slider).gap) || 0;
+    const cardWidth = firstCard
+      ? firstCard.getBoundingClientRect().width + gap
+      : 0;
 
-  const firstCard = slider.querySelector('li');
-  const gap       = parseFloat(getComputedStyle(slider).gap) || 0;
-  const cardWidth = firstCard
-    ? firstCard.getBoundingClientRect().width + gap
-    : 0;
+    prevButton.addEventListener('click', () =>
+      slider.scrollBy({ left: -cardWidth, behavior: 'smooth' })
+    );
+    nextButton.addEventListener('click', () =>
+      slider.scrollBy({ left: cardWidth, behavior: 'smooth' })
+    );
 
-  prevBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-  });
+    let startX      = null;
+    let scrollStart = null;
 
-  nextBtn.addEventListener('click', () => {
-    slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
-  });
+    slider.addEventListener('touchstart', (e) => {
+      startX      = e.touches[0].clientX;
+      scrollStart = slider.scrollLeft;
+    }, { passive: true });
 
-  let startX = null;
-  let scrollStart = null;
+    slider.addEventListener('touchmove', (e) => {
+      if (startX === null) return;
+      const distance = startX - e.touches[0].clientX;
+      slider.scrollLeft = scrollStart + distance;
+    }, { passive: true });
 
-  slider.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    scrollStart = slider.scrollLeft;
-  }, { passive: true });
-
-  slider.addEventListener('touchmove', (e) => {
-    if (startX === null) return;
-    const distance = startX - e.touches[0].clientX;
-    slider.scrollLeft = scrollStart + distance;
-  }, { passive: true });
-
-  slider.addEventListener('touchend', (e) => {
-    if (startX === null) return;
-    const distance = startX - e.changedTouches[0].clientX;
-    if (Math.abs(distance) > cardWidth / 2) {
-      slider.scrollBy({
-        left: distance > 0 ? cardWidth : -cardWidth,
-        behavior: 'smooth',
-      });
-    }
-    startX = null;
-    scrollStart = null;
-  }, { passive: true });
+    slider.addEventListener('touchend', (e) => {
+      if (startX === null) return;
+      const distance = startX - e.changedTouches[0].clientX;
+      if (Math.abs(distance) > cardWidth / 2) {
+        slider.scrollBy({
+          left: distance > 0 ? cardWidth : -cardWidth,
+          behavior: 'smooth',
+        });
+      }
+      startX = null;
+      scrollStart = null;
+    }, { passive: true });
+  }
 </script>
 
 <style>
