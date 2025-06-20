@@ -7,7 +7,7 @@ const posts = (await getCollection('blog'))
   .slice(0, 8);
 ---
 
-<div class="slider-container">
+<div class="slider-container" client:load>
   <ul class="slider" id="blog-slider">
     {posts.map((post) => (
         <BlogCard
