@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogCard from './BlogCard.astro';
+import BlogSliderScript from './BlogSliderScript.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -33,6 +34,8 @@ const posts = (await getCollection('blog'))
     <a href="/blog" class="button-primary blog-button">Read All Posts</a>
   </div>
 </div>
+
+<BlogSliderScript />
 
 <style>
 ul {
