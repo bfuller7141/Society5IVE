@@ -36,63 +36,62 @@ const posts = (await getCollection('blog'))
 </div>
 
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
     const slider = document.getElementById('blog-slider');
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
-  
+
     if (slider && prevButton && nextButton) {
-      // Dynamically calculate the width of one card
       const cardWidth = slider.firstElementChild
         ? slider.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(slider).gap)
         : 0;
-  
+
       prevButton.addEventListener('click', () => {
         slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
       });
-  
+
       nextButton.addEventListener('click', () => {
         slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
       });
-  
-      // Mobile swipe handling
-      let startX: number | null = null;
-      let scrollStart: number | null = null;
-  
+
+      let startX = null;
+      let scrollStart = null;
+
       slider.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      scrollStart = slider.scrollLeft;
-    }, { passive: true });
+        startX = e.touches[0].clientX;
+        scrollStart = slider.scrollLeft;
+      }, { passive: true });
 
-    slider.addEventListener('touchmove', (e) => {
-      if (startX !== null) {
-        const currentX = e.touches[0].clientX;
-        const distance = startX - currentX;
-        if (scrollStart !== null) {
-          slider.scrollLeft = scrollStart + distance;
+      slider.addEventListener('touchmove', (e) => {
+        if (startX !== null) {
+          const currentX = e.touches[0].clientX;
+          const distance = startX - currentX;
+          if (scrollStart !== null) {
+            slider.scrollLeft = scrollStart + distance;
+          }
         }
-      }
-    }, { passive: true });
+      }, { passive: true });
 
-    slider.addEventListener('touchend', (e) => {
-      if (startX === null) return;
-      
-      const endX = e.changedTouches[0].clientX;
-      const distance = startX - endX;
+      slider.addEventListener('touchend', (e) => {
+        if (startX === null) return;
 
-      if (Math.abs(distance) > cardWidth / 2) {
-        slider.scrollBy({
-          left: distance > 0 ? cardWidth : -cardWidth,
-          behavior: 'smooth',
-        });
-      } else {
-        slider.scrollBy({ left: 0, behavior: 'smooth' });
-      }
+        const endX = e.changedTouches[0].clientX;
+        const distance = startX - endX;
 
-      startX = null;
-      scrollStart = null;
-    }, { passive: true });
+        if (Math.abs(distance) > cardWidth / 2) {
+          slider.scrollBy({
+            left: distance > 0 ? cardWidth : -cardWidth,
+            behavior: 'smooth',
+          });
+        } else {
+          slider.scrollBy({ left: 0, behavior: 'smooth' });
+        }
 
+        startX = null;
+        scrollStart = null;
+      }, { passive: true });
     }
+  });
 </script>
 
 <style>
