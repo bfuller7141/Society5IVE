@@ -36,7 +36,7 @@ const posts = (await getCollection('blog'))
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('load', () => {
     const slider = document.getElementById('blog-slider');
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
