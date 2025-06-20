@@ -42,9 +42,11 @@ const posts = (await getCollection('blog'))
     const nextButton = document.getElementById('nextButton');
 
     if (slider && prevButton && nextButton) {
-      const cardWidth = slider.firstElementChild
-        ? slider.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(slider).gap)
-        : 0;
+      const firstCard = slider.querySelector('li'); // or directly target .BlogCard if needed
+      const sliderStyles = window.getComputedStyle(slider);
+      const gap = parseFloat(sliderStyles.getPropertyValue('gap')) || 0;
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width + gap : 0;
+
 
       prevButton.addEventListener('click', () => {
         slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
