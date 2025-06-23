@@ -37,6 +37,19 @@ body {
     background-position: bottom;
 }
 
+.hero.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url(/images/backgrounds/Hero-Background_Blur.webp);
+    background-size: cover;
+    background-position: bottom;
+}
+
 /* Padding Styles */
 .padding-hero {
     padding: var(--hero) var(--side);
@@ -290,6 +303,34 @@ ul.wrapper {
     margin-top: 3.5rem;
     background-color: var(--plumb-500);
 }
+  /* Founder Section */
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .founder-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .credentials {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--plumb-500);
+  }
+  /* Spotify Embed */
+  .spotify-embed {
+    width: 100%;
+    height: 380px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-top: 2rem;
+  }
 
 /* Hidden Styles */
 .hide-desktop {
@@ -307,16 +348,25 @@ ul.wrapper {
     .img-full {
         height: 25rem;
     }
+
+    .wrapper-column.large-left {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    .founder-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .img-main {
+        order: -1;
+        margin-bottom: 1rem;
+    }
 }
 
 @media (max-width:768px) {
     /* Wrapper Styles */
     .wrapper-text {
         column-count: 1;
-    }
-
-      .wrapper-column.large-left {
-        grid-template-columns: 1fr;
     }
 
     .img-main {
