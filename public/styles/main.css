@@ -436,6 +436,9 @@ ul.wrapper {
     .hero.about {
         height: 80vh;
     }
+    .hero.contact {
+        height: 80vh;
+    }
 
     /* Image Styles */
     .img-full {
@@ -465,6 +468,10 @@ ul.wrapper {
     .img-main {
         order: -1;
         margin-bottom: 1rem;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
     }
 
     /* Mobile Only Styles */
