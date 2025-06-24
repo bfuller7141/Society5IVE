@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import NavMain from "../components/NavMain.astro";
 import FooterMain from "../components/FooterMain.astro";
+import ContactForm from "../components/ContactForm.astro";
 ---
 
 <html lang="en">
@@ -21,12 +22,25 @@ import FooterMain from "../components/FooterMain.astro";
           <div class="container">
             <div class="wrapper-hero">
               <h1 class="title-page">
-                Let's Create<br/>
-                <span class="title-page display-span">Something Beautiful</span>
+                Let's Begin<br/>
+                Your <span class="title-page display-span">Project</span>
               </h1>
-              <p class="text-body large white">
-                Ready to transform your space? We'd love to hear about your vision and explore how we can bring it to life together.
+              <div class="wrapper-buttons">
+                <a class="button-primary" href="#form">Fill Out Our Intake Form</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="padding-normal small=top">
+          <div class="container">
+            <div class="wrapper-center">
+              <p class="text-body large center">
+                Every great design begins with understanding your story, your needs, and your dreams for your space. Whether you're ready to start a full project or just exploring possibilities, we're here to listen and guide you through the process.
               </p>
+              <div class="divider"></div>
             </div>
           </div>
         </div>
@@ -35,13 +49,12 @@ import FooterMain from "../components/FooterMain.astro";
       <section>
         <div class="padding-normal">
           <div class="container">
-            <div class="wrapper-column large-left">
-              <div class="wrapper">
-                <h2 class="title-section display-section">Get in Touch<br/> <span class="title-section">Start the Conversation</span></h2>
-                <p class="text-body padding-top">
-                  Every great design begins with understanding your story, your needs, and your dreams for your space. Whether you're ready to start a full project or just exploring possibilities, we're here to listen and guide you through the process.
-                </p>
-                
+            <h2 class="title-section display-section center">Send Us a Message<br/> <span class="title-section center">We're Here to Help</span></h2>
+            <div class="wrapper-column large-left top" id="form">
+              <div>
+                <ContactForm />
+              </div>
+              <div class="wrapper fixed">
                 <div class="contact-methods">
                   <div class="contact-item">
                     <h3 class="title-list">Phone</h3>
@@ -54,14 +67,6 @@ import FooterMain from "../components/FooterMain.astro";
                   </div>
                   
                   <div class="contact-item">
-                    <h3 class="title-list">Studio Location</h3>
-                    <p class="text-body">
-                      Phoenix, Arizona<br/>
-                      Available by appointment
-                    </p>
-                  </div>
-                  
-                  <div class="contact-item">
                     <h3 class="title-list">Response Time</h3>
                     <p class="text-body">
                       We typically respond within 24 hours during business days
@@ -69,170 +74,45 @@ import FooterMain from "../components/FooterMain.astro";
                   </div>
                 </div>
               </div>
-              <img class="img-main" src="https://images.pexels.com/photos/6782351/pexels-photo-6782351.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Society 5IVE design consultation"/>
             </div>
           </div>
         </div>
       </section>
 
       <section>
-        <div class="padding-normal">
+        <div class="padding-normal large-bottom">
           <div class="container">
             <div class="wrapper-center">
-              <h2 class="title-section display-section center">Send Us a Message<br/> <span class="title-section center">We're Here to Help</span></h2>
-              
-              <form class="contact-form" action="#" method="POST">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="firstName" class="title-list">First Name</label>
-                    <input type="text" id="firstName" name="firstName" required class="form-input">
-                  </div>
-                  <div class="form-group">
-                    <label for="lastName" class="title-list">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" required class="form-input">
-                  </div>
-                </div>
-                
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="email" class="title-list">Email Address</label>
-                    <input type="email" id="email" name="email" required class="form-input">
-                  </div>
-                  <div class="form-group">
-                    <label for="phone" class="title-list">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" class="form-input">
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="projectType" class="title-list">Project Type</label>
-                  <select id="projectType" name="projectType" required class="form-input">
-                    <option value="">Select a project type</option>
-                    <option value="residential">Residential Interior Design</option>
-                    <option value="commercial">Commercial Interior Design</option>
-                    <option value="consultation">Design Consultation</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <label for="timeline" class="title-list">Project Timeline</label>
-                  <select id="timeline" name="timeline" class="form-input">
-                    <option value="">Select your timeline</option>
-                    <option value="immediate">Ready to start immediately</option>
-                    <option value="1-3months">1-3 months</option>
-                    <option value="3-6months">3-6 months</option>
-                    <option value="6months+">6+ months</option>
-                    <option value="exploring">Just exploring options</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <label for="budget" class="title-list">Budget Range (Optional)</label>
-                  <select id="budget" name="budget" class="form-input">
-                    <option value="">Select budget range</option>
-                    <option value="under-25k">Under $25,000</option>
-                    <option value="25k-50k">$25,000 - $50,000</option>
-                    <option value="50k-100k">$50,000 - $100,000</option>
-                    <option value="100k+">$100,000+</option>
-                    <option value="consultation-only">Consultation only</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <label for="message" class="title-list">Tell Us About Your Project</label>
-                  <textarea id="message" name="message" rows="6" placeholder="Share your vision, challenges, or questions. The more you tell us, the better we can help." class="form-input form-textarea"></textarea>
-                </div>
-                
-                <div class="wrapper-buttons center">
-                  <button type="submit" class="button-primary">Send Message</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="padding-normal">
-          <div class="container">
-            <div class="wrapper-center">
-              <h2 class="title-section display-section center">What Happens Next<br/> <span class="title-section center">Our Process</span></h2>
-              <div class="next-steps">
-                <div class="step-item">
-                  <div class="step-number">01</div>
-                  <h3 class="title-list">We'll Reach Out</h3>
+              <h2 class="title-section display-section center">Our Process<br/> <span class="title-section center">What Happens Next</span></h2>
+              <div class="process-grid">
+                <div class="card not-center">
+                  <div class="process-number">01</div>
+                  <h3 class="title-list">Discovery</h3>
                   <p class="text-body">
-                    Within 24 hours, we'll contact you to schedule a conversation about your project and answer any initial questions.
+                    We begin with an initial conversation to understand your needs, style, and space. Listening closely helps us gather insights that inform every design decision ahead.
                   </p>
                 </div>
-                <div class="step-item">
-                  <div class="step-number">02</div>
-                  <h3 class="title-list">Discovery Call</h3>
+                <div class="card not-center">
+                  <div class="process-number">02</div>
+                    <h3 class="title-list">Concept</h3>
+                    <p class="text-body">
+                      Next we translate ideas into visual concepts. Through mood boards, sketches, and material samples, we explore options that align with your vision and project goals.
+                    </p>
+                </div>
+                <div class="card not-center">
+                  <div class="process-number">03</div>
+                  <h3 class="title-list">Implementation</h3>
                   <p class="text-body">
-                    We'll have a detailed discussion about your vision, needs, timeline, and how we might work together.
+                    Once the design is approved, we coordinate with trusted craftsmen to bring your space to life. We oversee installation to ensure quality, schedule, and results.
                   </p>
                 </div>
-                <div class="step-item">
-                  <div class="step-number">03</div>
-                  <h3 class="title-list">Proposal & Next Steps</h3>
+                <div class="card not-center">
+                  <div class="process-number">04</div>
+                  <h3 class="title-list">Completion</h3>
                   <p class="text-body">
-                    If we're a good fit, we'll create a custom proposal outlining our approach, timeline, and investment for your project.
+                    At project completion, we walk through every detail with you. Your feedback shapes any final tweaks, ensuring the finished space meets your needs and stories.
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="padding-normal">
-          <div class="container">
-            <div class="wrapper-center">
-              <h2 class="title-section display-section center">Frequently Asked Questions<br/> <span class="title-section center">Quick Answers</span></h2>
-              <div class="faq-grid">
-                <div class="faq-item">
-                  <h3 class="title-small">Do you work outside of Phoenix?</h3>
-                  <p class="text-body">
-                    While we're based in Phoenix, we work with clients throughout Arizona and can discuss projects in neighboring states on a case-by-case basis.
-                  </p>
-                </div>
-                <div class="faq-item">
-                  <h3 class="title-small">What's your minimum project size?</h3>
-                  <p class="text-body">
-                    We work on projects of all sizes, from single-room refreshes to full home renovations. Our consultation services are perfect for smaller projects or getting started.
-                  </p>
-                </div>
-                <div class="faq-item">
-                  <h3 class="title-small">How long does a typical project take?</h3>
-                  <p class="text-body">
-                    Project timelines vary based on scope and complexity. A single room might take 6-8 weeks, while a full home can take 3-6 months from concept to completion.
-                  </p>
-                </div>
-                <div class="faq-item">
-                  <h3 class="title-small">Do you handle project management?</h3>
-                  <p class="text-body">
-                    Yes, we manage every aspect of your project, from initial design through final installation, coordinating with contractors and vendors as needed.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="cta-section">
-        <div class="padding-normal">
-          <div class="container">
-            <div class="wrapper-center">
-              <h2 class="title-section display-section center white">Ready to Transform<br/> <span class="title-section center white">Your Space?</span></h2>
-              <p class="text-body large center white">
-                Don't wait to create the space you've been dreaming of. Let's start the conversation today.
-              </p>
-              <div class="wrapper-buttons center">
-                <a class="button-primary" href="tel:+16025550123">Call Us Now</a>
-                <a class="button-secondary white" href="mailto:hello@society5ive.com">Send an Email</a>
               </div>
             </div>
           </div>
@@ -248,32 +128,6 @@ import FooterMain from "../components/FooterMain.astro";
 
 <style>
   /* Hero Section - extends existing hero pattern */
-  .hero.contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background-image: url('https://images.pexels.com/photos/6782342/pexels-photo-6782342.jpeg?auto=compress&cs=tinysrgb&w=1600');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-
-  .hero.contact::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 45, 58, 0.4), rgba(0, 45, 58, 0.8));
-    z-index: 1;
-  }
-
-  .hero.contact .container {
-    position: relative;
-    z-index: 2;
-  }
 
   /* Contact Methods - uses existing spacing */
   .contact-methods {
@@ -290,47 +144,6 @@ import FooterMain from "../components/FooterMain.astro";
 
   .contact-item:last-child {
     border-bottom: none;
-  }
-
-  /* Form Styles - follows existing design patterns */
-  .contact-form {
-    width: 100%;
-    max-width: 50rem;
-    margin-top: 3rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .form-input {
-    padding: 1rem;
-    border: 2px solid var(--gray-200);
-    border-radius: var(--radius-md);
-    font-family: var(--font-primary);
-    font-size: var(--fs-body);
-    color: var(--agave-500);
-    background: var(--whitesands-100);
-    transition: border-color 0.2s ease;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: var(--plumb-500);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 8rem;
   }
 
   /* Next Steps - uses existing grid pattern */
@@ -396,13 +209,6 @@ import FooterMain from "../components/FooterMain.astro";
     z-index: 2;
   }
 
-  .button-secondary.white {
-    color: var(--whitesands-500);
-  }
-
-  .button-secondary.white:hover {
-    color: var(--golden-500);
-  }
 
   /* Mobile Responsive - extends existing breakpoints */
   @media (max-width: 768px) {
