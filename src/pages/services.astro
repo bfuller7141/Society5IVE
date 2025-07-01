@@ -1,0 +1,162 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import NavMain from "../components/NavMain.astro";
+import FooterMain from "../components/FooterMain.astro";
+import CTAMain from "../components/CTAMain.astro";
+import { getCollection } from 'astro:content';
+
+// grab and sort all services
+const servicesList = (await getCollection('services'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<html lang="en">
+  <head>
+    <BaseHead 
+      title="Interior Design Services | Society 5IVE Phoenix"
+      description="Discover our comprehensive interior design services including residential design, commercial spaces, and design consultations. Creating sustainable, meaningful spaces in Phoenix, Arizona."
+      image=""
+    />
+  </head>
+  <body>
+    <NavMain />
+    <main id="main-content">
+
+      <!-- Hero -->
+      <section class="hero about">
+        <div class="padding-hero">
+          <div class="container">
+            <div class="wrapper-hero">
+              <h1 class="title-page">
+                Our Design<br/>
+                <span class="title-page display-span">Services</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro -->
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper-center">
+              <h2 class="title-section display-section center">
+                What We Offer<br/>
+                <span class="title-section center">Tailored Design Solutions</span>
+              </h2>
+              <p class="text-body large center">
+                Every project begins with understanding your unique needs, lifestyle, and vision. We offer comprehensive design services that prioritize sustainability, functionality, and authentic personal expression.
+              </p>
+              <div class="divider"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- All Services Grid -->
+      <section>
+        <div class="padding-normal small-top">
+          <div class="container">
+            <div class="wrapper-center">
+              <div class="services-grid">
+                {servicesList.map((service) => (
+                  <div class="card service-item">
+                    <div class="service-header">
+                      {service.data.icon && (
+                        <div class="icon-main">
+                          <img src={service.data.icon} alt="" />
+                        </div>
+                      )}
+                      <div class="service-title-group">
+                        <h3 class="title-list">{service.data.title}</h3>
+                        {service.data.subtitle && (
+                          <p class="text-body subtitle">{service.data.subtitle}</p>
+                        )}
+                      </div>
+                    </div>
+                    <p class="text-body">{service.data.description}</p>
+                    {Array.isArray(service.data.features) && service.data.features.length > 0 && (
+                      <ul class="service-features">
+                        {service.data.features.map((feat) => (
+                          <li class="text-body">{feat}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <div class="service-details">
+                      {service.data.timeline && (
+                        <div class="service-detail">
+                          <span class="title-small">Timeline:</span>
+                          <span class="text-body">{service.data.timeline}</span>
+                        </div>
+                      )}
+                      {service.data.startingPrice && (
+                        <div class="service-detail">
+                          <span class="title-small">Starting at:</span>
+                          <span class="text-body">{service.data.startingPrice}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div class="wrapper-buttons">
+                      <a href={`/services/${service.slug}`} class="button-primary">Learn More</a>
+                      <a href="/contact" class="button-secondary">Get Quote</a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Approach -->
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <div class="wrapper-column large-left">
+              <div class="wrapper">
+                <h2 class="title-section display-section">
+                  Our Approach<br/>
+                  <span class="title-section">Design That Connects</span>
+                </h2>
+                <p class="text-body padding-top">
+                  We believe great design starts with great listening. Every service we offer is built around understanding your unique needs, lifestyle, and vision. Whether you're looking for a complete home transformation or focused design consultation, our process remains the same: collaborative, thoughtful, and centered on creating spaces that truly work for you.
+                </p>
+                <ul class="wrapper">
+                  <li class="text-body">
+                    <h3 class="title-list">Sustainability First</h3>
+                    <p class="text-body">Every material and vendor we choose reflects our commitment to environmental responsibility and ethical sourcing.</p>
+                  </li>
+                  <li class="text-body">
+                    <h3 class="title-list">Function Meets Beauty</h3>
+                    <p class="text-body">We create spaces that are as functional as they are beautiful, supporting your daily life and long-term needs.</p>
+                  </li>
+                  <li class="text-body">
+                    <h3 class="title-list">Collaborative Process</h3>
+                    <p class="text-body">Your input guides every decision, ensuring the final result reflects your personality and lifestyle.</p>
+                  </li>
+                </ul>
+                <div class="wrapper-buttons">
+                  <a class="button-primary" href="/contact">Start Your Project</a>
+                  <a class="button-secondary" href="/about">Learn About Us</a>
+                </div>
+              </div>
+              <img class="img-main" src="/images/static/sofa.webp" alt="Society 5IVE design process" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section>
+        <div class="padding-normal">
+          <div class="container">
+            <CTAMain />
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <FooterMain />
+  </body>
+</html>

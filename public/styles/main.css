@@ -85,6 +85,10 @@ body {
     padding-bottom: var(--lg-vertical);
 }
 
+.padding-top-large {
+    padding-top: var(--lg-vertical);
+}
+
 /*Wrapper Styles */
 .wrapper-hero {
     width: 100%;
