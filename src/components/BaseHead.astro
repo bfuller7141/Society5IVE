@@ -32,18 +32,16 @@ const canonicalUrl = base ? new URL(Astro.url.pathname, base).href : "";
   <!-- Security Headers -->
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-  <meta
-    http-equiv="Content-Security-Policy"
-    content="
-      default-src 'self';
-      script-src  'self';
-      style-src   'self' 'unsafe-inline';
-      img-src     'self' data:;
-      connect-src 'self';
-      font-src    'self';
-      frame-src   'self' https://open.spotify.com;
-    "
-  />
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src  'self' 'unsafe-inline';
+  style-src   'self' 'unsafe-inline';
+  img-src     'self' data:;
+  connect-src 'self';
+  font-src    'self' data:;
+  frame-src   'self' https://open.spotify.com;
+">
+
   <!-- Styles -->
   <link rel="stylesheet" href="/styles/fonts.css" />
   <link rel="stylesheet" href="/styles/root.css" />

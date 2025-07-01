@@ -8,21 +8,61 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
       <div class="nav-wrapper">
         <div class="nav-left">
           <a href="/" aria-label="Go to homepage">
-            <img class="nav-logo" src="/images/logo-society5ive.svg" alt="Society 5IVE logo" loading="eager" />
+            <img
+              class="nav-logo"
+              src="/images/logo-society5ive.svg"
+              alt="Society 5IVE logo"
+              loading="eager"
+            />
           </a>
         </div>
         <div class="nav-right">
-          <ul class="menu">
-            <li><a class={`nav-link ${currentPath === '/about' ? 'active' : ''}`} href="/about">About<div class="underline"></div></a></li>
-            <li><a class={`nav-link ${currentPath === '/services' ? 'active' : ''}`} href="/services">Services<div class="underline"></div></a></li>
-            <li><a class={`nav-link ${currentPath === '/projects' ? 'active' : ''}`} href="/projects">Projects<div class="underline"></div></a></li>
-            <li><a class={`nav-link ${currentPath === '/contact' ? 'active' : ''}`} href="/contact">Contact<div class="underline"></div></a></li>
+          <ul class="menu" id="menu">
+            <li>
+              <a
+                class={`nav-link ${currentPath === '/about' ? 'active' : ''}`}
+                href="/about"
+              >
+                About<div class="underline"></div>
+              </a>
+            </li>
+            <li>
+              <a
+                class={`nav-link ${currentPath === '/services' ? 'active' : ''}`}
+                href="/services"
+              >
+                Services<div class="underline"></div>
+              </a>
+            </li>
+            <li>
+              <a
+                class={`nav-link ${currentPath === '/projects' ? 'active' : ''}`}
+                href="/projects"
+              >
+                Projects<div class="underline"></div>
+              </a>
+            </li>
+            <li>
+              <a
+                class={`nav-link ${currentPath === '/contact' ? 'active' : ''}`}
+                href="/contact"
+              >
+                Contact<div class="underline"></div>
+              </a>
+            </li>
           </ul>
 
-          <a href="/contact" class="button-primary nav-cta">Start a Project</a>
+          <a href="/contact" class="button-primary nav-cta">
+            Start a Project
+          </a>
 
           <div class="nav-mobile">
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="menu">
+            <button
+              class="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="menu"
+            >
               <span class="bar"></span>
               <span class="bar"></span>
               <span class="bar"></span>
@@ -34,34 +74,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
   </div>
 </nav>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const menu = document.querySelector('.menu');
+<script src="/js/mobile-nav.js" type="module" defer></script>
 
-    if (hamburger && menu) {
-      hamburger.addEventListener('click', () => {
-        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        const isActive = !expanded;
-
-        hamburger.setAttribute('aria-expanded', isActive.toString());
-        hamburger.classList.toggle('active');
-        menu.classList.toggle('active');
-        document.body.classList.toggle('no-scroll', isActive); // Disable scroll
-      });
-
-      document.addEventListener('click', (event) => {
-        const target = event.target;
-        if (target instanceof Element && !target.closest('.nav-mobile, .menu')) {
-          menu.classList.remove('active');
-          hamburger.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.classList.remove('no-scroll'); // Enable scroll
-        }
-      });
-    }
-  });
-</script>
 
 <style>
   .main-nav {

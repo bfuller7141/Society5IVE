@@ -1,24 +1,31 @@
 /* Golden Hopes */
 @font-face {
   font-family: "Golden Hopes";
-  src: url("/fonts/golden-hopes.otf") format("opentype");
+  src: 
+    url("/fonts/golden-hopes.woff2") format("woff2"),
+    url("/fonts/golden-hopes.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-/* Open Sans Variable */
+/* Open Sans Variable - Regular */
 @font-face {
   font-family: "Open Sans";
-  src: url("/fonts/open-sans-var.ttf") format("truetype");
+  src: 
+    url("/fonts/OpenSans-VariableFont_wdth,wght.woff2") format("woff2"),
+    url("/fonts/OpenSans-VariableFont_wdth,wght.woff") format("woff");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
+/* Open Sans Variable - Italic */
 @font-face {
   font-family: "Open Sans";
-  src: url("/fonts/open-sans-var.ttf") format("truetype");
+  src: 
+    url("/fonts/OpenSans-Italic-VariableFont_wdth,wght.woff2") format("woff2"),
+    url("/fonts/OpenSans-Italic-VariableFont_wdth,wght.woff") format("woff");
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
