@@ -2,8 +2,8 @@
 @font-face {
   font-family: "Golden Hopes";
   src: 
-    url("/fonts/golden-hopes.woff2") format("woff2"),
-    url("/fonts/golden-hopes.woff") format("woff");
+    url("/fonts/GoldenHopes.woff2") format("woff2"),
+    url("/fonts/GoldenHopes.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

@@ -1,7 +1,7 @@
 :root {
   /* === Font Families === */
   --font-primary: "Open Sans", sans-serif;
-  --font-display: "Golden Hopes", serif;
+  --font-display: "Golden Hopes", sans-serif;
 
   /* === Deep Agave (#002D3A) === */
   --agave-100: #E0EBEE;
