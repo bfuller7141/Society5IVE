@@ -1,0 +1,17 @@
+# netlify.toml
+
+# Serve proper headers for .woff2 files
+[[headers]]
+  for = "/fonts/*.woff2"
+  [headers.headers]
+    Content-Type = "font/woff2"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Serve proper headers for .woff files
+[[headers]]
+  for = "/fonts/*.woff"
+  [headers.headers]
+    Content-Type = "font/woff"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000, immutable"
